@@ -1,0 +1,182 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="home.css">
+</head>
+<body>
+
+<img src="b2.jpg" style="width:1400px;height:90px;">
+<img src="b1.jpg" class="im" style="width:200px;height:90px;">
+<img src="logo.png" class="imi" style="width:200px;height:90px;">
+
+<div class="a">
+<p style="display:inline;">
+
+<div class="c">
+  <img src="list.png" width=40px height=40px ></img>
+  <div class="d">
+    <a href="home.html" ><p>Home</p></a>
+	
+	<a href="register.html"   id="re">Register</a><br>
+	<a href="login.html" id="lo">Login</a>
+	<button class="li" onclick="lt()" id="lot"  style="display:none;margin-left:55px;">Logout</button>
+  </div>
+</div>
+
+<input type="text" size="50" style="margin-left:200px;height:30px;" id="srch">
+
+<button onclick="search()" style="height:30px;">Search</button>
+
+</p>
+
+</div>
+
+<table>
+<tr>
+<th class="a" rowspan=2>
+<div class="u"><button onclick= "ts()" class="li" onclick="ts()"><p class="o">T-Shirt</p></button><br></div>
+<div class="u"><button onclick= "mw()" class="li"><p class="o" onclick="mw()">Mans Watch</p></button></div>
+</th>
+
+<th id="wa2" class="b">
+<a href="w2.html">
+<img src="w2.jpg" style="width:200px;height:200px"><br>
+<p>Luxury Navyforce</p>
+<p>Rp 2.150.000</p>
+</a>
+</th>
+
+<th id="s2" class="b">
+<a href="s2.html">
+<img src="s2.jpg" style="width:200px;height:200px"><br>
+<p>Armany Mans Coat </p>
+<p>Rp 1.115.000</p>
+</a>
+</th>
+
+<th id="wa3" class="b">
+<a href="w3.html">
+<img src="w3.jpg" style="width:200px;height:200px"><br>
+<p>Rolex V6</p>
+<p>Rp 2.995.000</p>
+</a>
+</th>
+
+<th id="wa1" class="b">
+<a href="iwatch.html">
+<img src="watch.jpg" style="width:200px;height:200px"><br>
+<p>Theorema Mans Watch</p>
+<p>Rp 3.860.000</p>
+</a>
+</th>
+
+<th id="s1" class="b">
+<a href="s1.html">
+<img src="s1.jpg" style="width:200px;height:200px"><br>
+<p>Rolex Shirt</p>
+<p>Rp 250.000</p>
+</a>
+</th>
+</tr>
+
+<tr>
+
+<th id="s3" class="b">
+<a href="s3.html">
+<img src="s3.jpg" style="width:200px;height:200px"><br>
+<p>Longline Shirt</p>
+<p>Rp 475.000</p>
+</a>
+</th>
+
+<th id="wa4" class="b">
+<a href="w4.html">
+<img src="w4.jpg" style="width:200px;height:200px"><br>
+<p >Rolex Oyster<br><br>Rp 5.250.000</p>
+</a>
+</th>
+
+<th id="wa5" class="b">
+<a href="Second Canvas.html">
+<img src="vg.png" style="width:200px;height:200px"><br>
+<p >Eat & Run<br><br>Free</p>
+</a>
+</th>
+
+</tr>
+</table>
+
+
+<script>
+var fi;
+var z;
+var i;
+var name=["theoremamanswatch","luxurynavyforce","rolex","rolexoyster","rolexshirt","armanymanscoat","longlineshirt"];
+var ti=["wa1","wa2","wa3","wa4","s1","s2","s3"];
+if(localStorage.col==1)
+{
+	document.getElementById('re').style.display="none";
+	document.getElementById('lo').style.display="none";
+	document.getElementById('lot').style.display="block";
+}
+
+else if(localStorage.col==0)
+{
+	document.getElementById('re').style.display="block";
+	document.getElementById('lo').style.display="block";
+	document.getElementById('lot').style.display="none";
+}
+
+function lt()
+{
+	localStorage.col=0;
+	window.location.href="home.html";
+}
+
+function search()
+{
+var name=["theoremamanswatch","luxurynavyforce","rolex","rolexoyster","rolexshirt","armanymanscoat","longlineshirt"];
+var ti=["wa1","wa2","wa3","wa4","s1","s2","s3"];
+var src=document.getElementById('srch').value;
+	for(i=0;i<name.length;i++)
+	{
+		z=name[i];
+		fi=z.search(src);
+		if(fi<0 || fi==-1)
+		{
+			document.getElementById(ti[i]).style.display='none';
+		}
+		if(fi>=0)
+		{
+			document.getElementById(ti[i]).style.display='block';
+		}
+		
+	}
+}
+function ts()
+{
+	for(i=0;i<4;i++)
+	{
+		document.getElementById(ti[i]).style.display='none';
+	}
+	for(i=4;i<7;i++)
+	{
+		document.getElementById(ti[i]).style.display='block';
+	}
+}
+
+function mw()
+{
+	for(i=0;i<4;i++)
+	{
+		document.getElementById(ti[i]).style.display='block';
+	}
+	for(i=4;i<7;i++)
+	{
+		document.getElementById(ti[i]).style.display='none';
+	}
+}
+</script>
+
+
+</body>
+</html>

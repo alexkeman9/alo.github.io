@@ -1,0 +1,179 @@
+<html>
+<style>
+body{
+ background:black;
+}
+div{
+	margin:200px 300px 100px 300px;
+	border:1px solid black;
+	border-radius:20px;
+	padding:40px 350px 40px 350px;
+	text-align:center;
+	color:yellow;
+}
+canvas{
+      position:absolute;
+      left:0;
+      top:0;
+      z-index:-1;
+    }
+</style>
+<body>
+<div>
+
+<canvas onmouseover="b()">
+</canvas>
+<form name="form">
+<p>Username</p><input type="text" placeholder="Input Username" name="uname">
+<p>Password</p><input type="password" name="pass"><br><br>
+</form>
+
+
+<button onclick="login()">Login</button>
+</div>
+
+<script>
+var lsid=localStorage.getItem("usname");
+var lspw=localStorage.getItem("pws");
+var iu,sp,cl=0;
+iu=lsid;
+sp=lspw;
+
+
+function login()
+{
+var id=document.form.uname.value;
+var pw=document.form.pass.value;
+var is,ps;
+var ss,sn;
+
+if(id.length<6 ||pw.length<6)
+{
+	alert("At least 6 character ID");
+}
+
+else if(id.length>=6 && pw.length>=6)
+{
+	is=lsid.search(id);
+	ps=lspw.search(pw);
+	
+
+	
+	if(is>=0 && ps>=0)
+	{
+		cl=1;
+		localStorage.col=cl;
+		window.location.href="home.html";
+	}
+	else if(is<0 || ps<0)
+	{
+		alert("ID and Password Doesnt match");
+	}
+}
+
+}
+
+
+var can=document.querySelector('canvas');
+can.width=window.innerWidth;
+can.height=window.innerHeight;
+
+var all=can.getContext('2d');
+
+var count=0;
+var x=0;
+var y=0,z=0;
+
+
+
+x=Math.random()*innerWidth;
+y=Math.random()*innerHeight;
+var color=["black","silver","white","#800080"," #ff0080","#4747d1","#bfff00","#b3ff66","#33ffff","#ffff00"];
+var rad=Math.random()*100;
+var putar=[]
+	for(i=1;i<=100;i++)
+	{
+	x=Math.random()*innerWidth;
+	y=Math.random()*innerHeight;
+
+	var xx=Math.random()*5;
+	var yy=Math.random()*5;
+	var rad=Math.random()*50;
+	putar.push(new ccle(x,y,xx,yy,rad));
+	}
+	
+	var coor =	{
+		x:undefined,
+		y:undefined
+	}
+	window.addEventListener('mousemove',function(event){
+		coor.x=event.x;
+		coor.y=event.y;
+	})
+	function ccle(x,y,xx,yy,rad)
+	{
+		this.x=x;
+		this.y=y;
+		this.xx=xx;
+		this.yy=yy;
+		this.rad=rad;
+		this.color=color[Math.floor(Math.random()*color.length)];
+		this.draw=function(){
+		all.beginPath();
+		all.arc(this.x,this.y,this.rad,0,Math.PI *2,false);
+		all.fillStyle=this.color;
+		all.fill();
+		all.stroke();
+		}
+	
+		this.update=function(){
+		
+		if(this.x+this.rad>innerWidth || this.x-this.rad<0)
+		{
+			this.xx=-this.xx;
+		}
+		if(this.y+this.rad>innerHeight || this.y-this.rad<0)
+		{
+			this.yy=-this.yy;
+		}
+			this.x+=this.xx;
+			this.y+=this.yy;
+		if(this.x>6 || this.x<-6 || this.y>6 || this.y<-6)
+		{
+			this.x=this.x;
+			this.y=this.y;
+		}
+	
+		if(coor.x-this.x<50 && coor.x-this.x>-50
+			&& coor.y-this.y<50 && coor.y-this.y>-50)
+		{
+			if(Math.floor(this.y)+Math.floor(this.rad)==coor.y || Math.floor(this.x ) +Math.floor(this.rad)==coor.x || Math.floor(this.x ) -Math.floor(this.rad)==coor.x || Math.floor(this.y)-Math.floor(this.rad)==coor.y  )
+			{
+				this.xx=-this.xx; 
+				this.yy=-this.yy; 
+			}
+		}
+		
+		else if(this.rad>6)
+		{
+			this.rad-=6;
+		}
+		 
+		this.draw();
+		}
+	}
+
+	function b()
+	{
+	requestAnimationFrame(b);
+	all.clearRect(0,0,innerWidth,innerHeight);
+	for(i=1;i<=putar.length;i++)
+	{
+	putar[i].update();
+	}
+	
+}
+
+</script>
+</body>
+</html>

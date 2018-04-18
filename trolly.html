@@ -1,0 +1,48 @@
+<html>
+<style>
+
+</style>
+<body>
+<table>
+<form>
+<tr>
+<td>To </td>
+<th><input type="text" ></input></th>
+</tr>
+<tr>
+<td>Confirm ID  </td>
+<th><input type="text"></input></th>
+</tr>
+<tr>
+<td>Phone Number </td>
+<th><input type="text"></input></th>
+</tr>
+<tr>
+<th><button onclick="add()">+Alternative Address</button></th>
+<th><input type="text" style="display:none"></input></th>
+<th rowspan=2><button onclick="buy()">Confirm</button></th>
+<th rowspan=2><button onclick="ccl()">Cancel</button></th>
+</tr>
+<p id="u"></p>
+<script>
+var ttl=localStorage.tT;
+var qtt=localStorage.tQ;
+var name=localStorage.tN;
+
+
+function buy()
+{
+	
+}
+
+function ccl()
+{
+	window.location.href="data.html";
+	localStorage.setItem("ttl","");
+	localStorage.setItem("nm","");
+	localStorage.setItem("qu","");
+	
+}
+</script>
+</body>
+</html>

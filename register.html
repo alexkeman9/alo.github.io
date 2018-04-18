@@ -1,0 +1,289 @@
+<html>
+<style>
+body{
+	background:black;
+}
+div{
+	margin:100px 100px 100px 240px;
+}
+table{
+	border:2px solid black;
+	border-radius:10px;
+}
+th{
+	border:2px solid black;
+	border-radius:8px;
+	padding:20px;
+	color:white;
+}
+canvas{
+      position:absolute;
+      left:0;
+      top:0;
+      z-index:-1;
+    }
+</style>
+<body>
+<canvas onmouseout="b()">
+</canvas>
+<div>
+<table style="width:80%">
+<tr>
+<th rowspan=2>
+<form name="form">
+<p>Name</p><input type="text" name="name" id="name" placeholder="Input Name">
+<p>Gender</p><input type="radio">Male<br><input type="radio">Female
+<p>Username</p><input type="text"  id="uname" name="uname" placeholder="Input Username">
+<p>Password</p><input name="pass" id="pass" type="password">
+<p>Confirm Password</p><input type="password" id="cpass" name="cpass" >
+</form>
+</th>
+<th>
+<p>Email</p><input type="email" id="eml"><br>
+<p>Phone Number</p><input type="text" placeholder="+62X-XXXX-XXXX" id="pn">
+<p>Address</p><input type="text"  id="ars">
+<p>Postal Code</p><input type="text" >
+</th>
+</form>
+</tr>
+<tr>
+<th>
+<button onclick="submit()">Submit</button>
+
+<button onclick="log()">Login</button>
+</th>
+</tr>
+</table>
+</div>
+<script>
+var x=0;
+var y=0;
+var z=0;
+var id="";
+var pass="";
+var name="";
+var email="";
+var phone="";
+var adres="";
+var x2=localStorage.getItem("y");
+var xx=parseInt(x2);
+var takeID=localStorage.getItem("usname");
+var takePass=localStorage.getItem("pws");
+var takeMail=localStorage.getItem("em");
+var takePhone=localStorage.getItem("pe");
+var takeAdres=localStorage.getItem("adrs");
+	
+function submit()
+{
+var el=document.getElementById('eml').value;
+var ph=document.getElementById('pn').value;
+var ad=document.getElementById('ars').value;
+var nama=document.form.name.value;
+var user=document.form.uname.value;
+var pw=document.form.pass.value;
+var cpw=document.form.cpass.value;
+
+z+=1;
+if(nama==""){document.getElementById('name').style.border="2px solid red";}
+else{document.getElementById('name').style.border="2px solid #75ff30";}
+
+if(user==""){document.getElementById('uname').style.border="2px solid red";}
+else{document.getElementById('uname').style.border="2px solid #75ff30";}
+
+if(pw==""){document.getElementById('pass').style.border="2px solid red";}
+else{document.getElementById('pass').style.border="2px solid #75ff30";}
+
+
+if(cpw==""){document.getElementById('cpass').style.border="2px solid red";}
+else{document.getElementById('cpass').style.border="2px solid #75ff30";}
+
+if(cpw!=pw){alert("Your Password doesn't Match!!");document.getElementById('cpass').style.border="2px solid red";}
+else if(cpw==pw){document.getElementById('cpass').style.border="2px solid #75ff30";}
+
+if(xx==0)
+{
+x++;
+}
+else if(xx!=0)
+{
+x=xx;
+}
+if(x>=xx && xx!=0)
+{
+	x+=z;
+}
+y=parseInt(x+xx);
+localStorage.setItem("y",x);
+alert(x+" "+xx);
+
+//--------id
+id+=user+"\n";
+if(takeID!="")
+{
+	id=takeID;
+	id+=user+"\n";
+}
+//-------------------------------------------pass
+pass+=pw+"\n";
+if(takePass!="")
+{
+	pass=takePass;
+	pass+=pw+"\n";
+}
+
+//-------------------------------------------email
+email+=el+"\n";
+if(takeMail!="")
+{
+	email=takeMail;
+	email+=el+"\n";
+}
+//------------------------------------------phone
+phone+=ph+"\n";
+if(takePhone!="")
+{
+	phone=takePhone;
+	phone+=ph+"\n";
+}
+
+//------------------------------------------address
+adres+=ad+"\n";
+if(takeAdres!="")
+{
+	adres=takeAdres;
+	adres+=ad+"\n";
+}
+
+var se=takeID.search(user);
+if(se==-1 || se<0 && user.length>=6 && pw.length>=6 )
+{
+	localStorage.setItem("pws",pass);
+	localStorage.setItem("usname",id);
+	localStorage.setItem("em",email);
+	localStorage.setItem("adrs",adres);
+	localStorage.setItem("pe",phone);
+	window.location.href="register.html";
+}
+
+else if(user.length<6 || pw.length<6)
+{
+	alert("ID and Password must at least 6 Characters");
+}
+
+else if(se>=0)
+{
+	alert("ID Has been Taken");
+}
+
+}
+
+
+
+function log()
+{
+	window.location.href="login.html"
+}
+
+var can=document.querySelector('canvas');
+can.width=window.innerWidth;
+can.height=window.innerHeight;
+
+var all=can.getContext('2d');
+
+var count=0;
+var x=0;
+var y=0,z=0;
+
+
+
+x=Math.random()*innerWidth;
+y=Math.random()*innerHeight;
+var color=["black","silver","white","#800080"," #ff0080","#4747d1","#bfff00","#b3ff66","#33ffff","#ffff00"];
+var rad=Math.random()*100;
+var putar=[]
+	for(i=1;i<=300;i++)
+	{
+	x=Math.random()*innerWidth;
+	y=Math.random()*innerHeight;
+
+	var xx=Math.random()*5;
+	var yy=Math.random()*5;
+	var rad=Math.random()*50;
+	putar.push(new ccle(x,y,xx,yy,rad));
+	}
+	
+	var coor =	{
+		x:undefined,
+		y:undefined
+	}
+	window.addEventListener('mousemove',function(event){
+		coor.x=event.x;
+		coor.y=event.y;
+	})
+	function ccle(x,y,xx,yy,rad)
+	{
+		this.x=x;
+		this.y=y;
+		this.xx=xx;
+		this.yy=yy;
+		this.rad=rad;
+		this.color=color[Math.floor(Math.random()*color.length)];
+		this.draw=function(){
+		all.beginPath();
+		all.arc(this.x,this.y,this.rad,0,Math.PI *2,false);
+		all.fillStyle=this.color;
+		all.fill();
+		all.stroke();
+		}
+	
+		this.update=function(){
+		
+		if(this.x+this.rad>innerWidth || this.x-this.rad<0)
+		{
+			this.xx=-this.xx;
+		}
+		if(this.y+this.rad>innerHeight || this.y-this.rad<0)
+		{
+			this.yy=-this.yy;
+		}
+			this.x+=this.xx;
+			this.y+=this.yy;
+		if(this.x>6 || this.x<-6 || this.y>6 || this.y<-6)
+		{
+			this.x=this.x;
+			this.y=this.y;
+		}
+	
+		if(coor.x-this.x<50 && coor.x-this.x>-50
+			&& coor.y-this.y<50 && coor.y-this.y>-50)
+		{
+			if(Math.floor(this.y)+Math.floor(this.rad)==coor.y || Math.floor(this.x ) +Math.floor(this.rad)==coor.x || Math.floor(this.x ) -Math.floor(this.rad)==coor.x || Math.floor(this.y)-Math.floor(this.rad)==coor.y  )
+			{
+				this.xx=-this.xx; 
+				this.yy=-this.yy; 
+			}
+		}
+		
+		else if(this.rad>6)
+		{
+			this.rad-=6;
+		}
+		 
+		this.draw();
+		}
+	}
+
+	function b()
+	{
+	requestAnimationFrame(b);
+	all.clearRect(0,0,innerWidth,innerHeight);
+	for(i=1;i<=putar.length;i++)
+	{
+	putar[i].update();
+	}
+	
+}
+
+</script>
+</body>
+</html>

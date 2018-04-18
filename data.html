@@ -1,0 +1,257 @@
+<html>
+<style>
+body{
+	margin:0;
+}
+table{
+	margin:100px 10px 10px 80px;
+}
+th{
+	border:2px solid grey;
+	padding:10px 20px 10px 20px;
+}
+.i {
+  position: relative;
+}
+img.im {
+  position: absolute;
+  top: 8px;
+  float:left;
+}
+img.imi {
+  position: absolute;
+  top: 15px;
+  float:left;
+  margin-left:90px;
+}
+</style>
+<body>
+<img src="bg.png" style="width:1400px;height:90px;">
+<img src="joker.png" class="im" style="width:100px;height:80px;">
+<img src="logo.png" class="imi" style="width:300px;height:70px;">
+<h1><u>Customer Data</u></h1>
+<table cellspacing=3>
+<tr>
+<th>ID</th>
+<th>Password</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Address</th>
+<tr>
+<th id="ide"></th>
+<th id="pw"></th>
+<th id="em"></th>
+<th id="pho"></th>
+<th id="add"></th>
+</tr>
+</table>
+<button onclick="cle()"  style="margin-left:85px;">Clear</button>
+<table>
+<tr>
+<th id="name"></th>
+<th id="total"></th>
+<th id="qtt"></th>
+<th id="st"></th>
+<th id="sc"></th>
+<th id="th"></th>
+</tr>
+</table>
+<button onclick="cl()" style="margin-left:85px;">clearr</button>
+
+<script>
+var tID=localStorage.getItem("usname");
+var tPass=localStorage.getItem("pws");
+var tMail=localStorage.getItem("em");
+var tPhone=localStorage.getItem("pe");
+var tAdres=localStorage.getItem("adrs");
+
+do
+{
+var id=tID.replace(new RegExp('\r?\n','g'), '<br />');
+var count=id.search("\n");
+var x=id.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x.search(" ");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var pass=tPass.replace(new RegExp('\r?\n','g'), '<br />');
+count=pass.search("\n");
+var x2=pass.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x2.search(" ");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var mail=tMail.replace(new RegExp('\r?\n','g'), '<br />');
+count=mail.search("\n");
+var x3=mail.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x3.search(" ");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var ph=tPhone.replace(new RegExp('\r?\n','g'), '<br />');
+count=ph.search("\n");
+var x4=ph.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x4.search(" ");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var adrs=tAdres.replace(new RegExp('\r?\n','g'), '<br />');
+count=adrs.search("\n");
+var x5=adrs.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x5.search(" ");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+document.getElementById('ide').innerHTML=x;
+document.getElementById('pw').innerHTML=x2;
+document.getElementById('em').innerHTML=x3;
+document.getElementById('pho').innerHTML=x4;
+document.getElementById('add').innerHTML=x5;
+
+var a=localStorage.getItem("ttl");
+var b=localStorage.getItem("nm");
+var c=localStorage.getItem("qu");
+
+var d=localStorage.getItem("id");
+var e=localStorage.getItem("pn");
+var f=localStorage.getItem("na");
+
+do
+{
+var total=a.replace(new RegExp('\r?\n','g'), '<br />');
+var count=total.search("\n");
+var x=total.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var name=b.replace(new RegExp('\r?\n','g'), '<br />');
+var count=name.search("\n");
+var x2=name.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x2.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var qtt=c.replace(new RegExp('\r?\n','g'), '<br />');
+var count=qtt.search("\n");
+var x3=qtt.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x3.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var us=d.replace(new RegExp('\r?\n','g'), '<br />');
+var count=us.search("\n");
+var x4=us.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x4.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var tu=e.replace(new RegExp('\r?\n','g'), '<br />');
+var count=tu.search("\n");
+var x5=tu.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x5.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+do
+{
+var tn=f.replace(new RegExp('\r?\n','g'), '<br />');
+var count=tn.search("\n");
+var x6=tn.replace(new RegExp('\r?\n','g'), '<br />');
+var u=x6.search("\n");
+if(u>=0)
+{
+	break;
+}
+}while(u>=0 && u!=-1);
+
+
+var xx=x.replace("null","");
+var xx2=x2.replace("null","");
+var xx3=x3.replace("null","");
+var xx4=x4.replace("null","");
+var xx5=x5.replace("null","");
+var xx6=x6.replace("null","");
+
+document.getElementById('name').innerHTML=xx2;
+document.getElementById('qtt').innerHTML=xx3;
+ 
+document.getElementById('st').innerHTML=xx4;
+document.getElementById('sc').innerHTML=xx5;
+document.getElementById('th').innerHTML=xx6;
+
+function cle()
+{
+	localStorage.setItem("y",0);
+	localStorage.setItem("usname","");
+	localStorage.setItem("pws","");
+	localStorage.setItem("em","");
+	localStorage.setItem("pe","");
+	localStorage.setItem("adrs","");
+	alert("Sucess");
+	window.location.href="data.html";
+}
+
+
+function cl()
+{
+
+	window.localStorage.removeItem("ttl");
+	window.localStorage.removeItem("nm");
+	window.localStorage.removeItem("qu");
+	window.localStorage.removeItem("id");
+	window.localStorage.removeItem("na");
+	window.localStorage.removeItem("pn");
+	alert("success");
+	window.location.href="data.html";
+}
+
+</script>
+</body>
+</html>
